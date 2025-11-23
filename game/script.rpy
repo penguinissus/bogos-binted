@@ -1,7 +1,15 @@
-﻿define h = Character("Human")
+﻿#GOAL IS I WILL NOT FIND ANY COMMENTS AT THE END AKA ALL THE TO DO MESSAGES
+
+define h = Character("Human")
 define a = Character("Alien")
+define ma = Character("Market Alien") # I should change his name some time...
 
 label start:
+
+    $ ewords = ["zinky zoogle", "vorp", "zeeky", "booble"   , "zeekybooble"   , "beeble", "mee", "eep", "Forp", "zilk", "lort", "zort", "bartle", "yuckle", "birt", "corm", "harkle", "horp", "beekyfooble", "quarkle"]
+    $ awords = ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"]
+    $ kwords = ewords
+    #known words
 
     scene bg textHuman # to be made
 
@@ -64,10 +72,16 @@ label planet:
 
     if response1 == "ignores":
         jump selection1
-    elif response1 == "greeting":
-        show alien talking at truecenter
-        a ""
-    elif response1 == "explanation":
-        show alien talking at truecenter
+    
+    show alien talking at truecenter
+    if response1 == "explanation":
         # Hey is hello
         a "Zinky zoogle zort bartle"
+        h "Zinky zoogle"
+
+    # Hello! Let me show you around
+    a "Bartle! Yuckle borm mee harkle"
+
+    scene bg fruitStall # to be made
+    # Hey! Hi! Just pick whatever you want
+    ma "Zinky zoogle! Bartle! Zeeky horp beekyfooble markle"
