@@ -69,4 +69,5 @@ label planet:
         a ""
     elif response1 == "explanation":
         show alien talking at truecenter
-        a ""
+        # Hey is hello
+        a "Zinky zoogle zort bartle"
