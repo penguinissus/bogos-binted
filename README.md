@@ -36,3 +36,6 @@ This game will be made with ren'py and the goal of the game will be about gettin
 | feep | apple | 20 |
 | geekyduckle | thank you | 21 |
 | veepy | diet coke | 22 |
+| bogos | photos | 23 |
+| binted | printed | 24 |
+| meep | you got | 25 |

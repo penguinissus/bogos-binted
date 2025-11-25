@@ -3,26 +3,56 @@
 define h = Character("Human")
 define a = Character("Alien")
 define ma = Character("Market Alien") # I should change his name some time...
-define ga  Character("Grocery Store Alien")
+define ga = Character("Grocery Store Alien")
 
-$ translation = false
-$ progress = 0
+init python:
+    translation = False
+    progress = 0
+    ewords = ["zinky zoogle", "vorp", "zeeky", "booble"   , "zeekybooble"   , "beeble", "mee", "eep", "Forp", "zilk", "lort", "zort", "bartle", "yuckle", "birt", "corm", "harkle", "horp", "beekyfooble", "quarkle", "feep" , "geekyduckle", "veepy"    , "bogos" , "binted" , "meep"]
+    awords = ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"   , "apple", "thank you"  , "diet coke", "photos", "printed", "you got"]
+    kwords = ewords
 
 label translation:
+    $ alienWord = renpy.input("Alien Word")
+    $ humanWord = renpy.input("Enter your translation")
+    python:
+        counter = -1
+        if alienWord == humanWord:
+            for word in awords:
+                counter +=1
+                if alienWord == word:
+                    break
+            kword[counter] = humanWord
+        else:
+            "Not valid."
+    menu:
+        "enter more words":
+            jump translation
+        "back to alien planet":
+            if progress == 0:
+                jump transportToPlanet
+            elif progress == 1:
+                jump selection1
+            elif progress == 2:
+                jump fruitStall
+            elif progress == 3:
+                jump groceryStore
+            elif progress == 4:
+                jump printShop
+            elif progress == 5:
+                jump printShop
+            else:
+                jump start
 
 label start:
     $ progress = 0
-    $ ewords = ["zinky zoogle", "vorp", "zeeky", "booble"   , "zeekybooble"   , "beeble", "mee", "eep", "Forp", "zilk", "lort", "zort", "bartle", "yuckle", "birt", "corm", "harkle", "horp", "beekyfooble", "quarkle", "feep" , "geekyduckle", "veepy"]
-    $ awords = ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"   , "apple", "thank you"  , "diet coke"]
-    $ kwords = ewords
-    #known words
 
     scene bg textHuman # to be made
 
     show human talking at left # to be made
     h "Hey, just wondering if you got your photos printed?"
     show alien responding at right # to be made
-    a "bogos binted?"
+    a "[kwords[23]] [kwords[24]]?"
     h "What"
     a "-confused alien noises-"
 
@@ -31,10 +61,10 @@ label start:
     scene bg textAlien # to be made
     
     show alien talking at left # to be made
-    a "Zinky zoogle, zeekybooble beeble meep Forp Bogos Binted?"
+    a "[kwords[0]], [kwords[2]][kwords[3]] [kwords[5]] [kwords[25]] [kwords[8]] [kwords[23]] [kwords[24]]?"
     show human responding at right # to be made
     h "Photos printed?"
-    a "Vorp?"
+    a "[kwords[1]]?"
     h "- confused human noises-"
 
     menu:
@@ -55,18 +85,11 @@ label transportToPlanet:
 
     "uh oh. Mr Human seems to be landing on another planet... Just look outside and see"
     # insert cutscene where my guy lands on alien planet
-    # temporary translations: 
-    # Zinky zoogle: Hey
-    # Vorp: what
-    # photos printed: bogos binted
-    # zeekybooble: just wondering
-    # beeble: if
-    # meep: you got
-    # Forp: your
     
-    # spaceship lands
+    # spaceship about to land, alien walks up to that guy still inside spaceship
     # here's where I proceed to make up a whole entire language...
-    a "Zinky zoogle!"
+    show  alien talking at center # to be made
+    a "[kwords[0]]!"
     h "Whaat... what should I respond with"
 
     jump selection1
@@ -89,17 +112,17 @@ label planet:
     if response1 == "ignores":
         jump selection1
     
-    show alien talking at truecenter
+    show alien talking at center
     if response1 == "explanation":
         # Hey is hello
-        a "Zinky zoogle zort bartle"
-        h "Zinky zoogle"
+        a "[kwords[11]] [kwords[9]] [kwords[0]]"
+        h "[kwords[0]]"
 
     # Hello! Let me show you around
-    a "Bartle! Yuckle borm mee harkle"
+    a "[kwords[12]]! [kwords[13]] [kwords[14]] [kwords[15]] [kwords[6]] [kwords[16]]"
 
     menu:
-        "What is going on":
+        "What is going on? I better keep moving":
             jump fruitStall
         "I think I might need to take some notes":
             jump translation
@@ -107,21 +130,23 @@ label planet:
 label fruitStall:
     $ progress = 3
 
+    #cutscene of them walking into a market
+
     scene bg fruitStall # to be made
 
     show marketAlien talking at left # to be made
     # Hey! Hello! Just pick whatever you want
-    ma "Zinky zoogle! Bartle! Zeeky horp beekyfooble markle"
+    ma "[kwords[0]]! [kwords[12]]! [kwords[2]] [kwords[17]] [kwords[18]] [kwords[6]] [kwords[19]]"
     show alien talking at right # to be made
     # Hello! Me want apple"
-    a "Bartle! Barkle feep"
+    a "[kwords[12]]! [kwords[14]] [kwords[19]] [kwords[20]]"
 
     show marketAlien handingApple at left # to be made
-    ma "feep!"
+    ma "[kwords[20]]!"
     #pause
     show marketAlien idle at left # to be made
     show alien withApple at right # to be made
-    a "geekyduckle"
+    a "[kwords[21]]"
 
     menu:
         "uhh let's just keep going":
@@ -132,19 +157,23 @@ label fruitStall:
 label groceryStore:
     $ progress = 4
 
+    #cutscene of them walking through the market
+
     scene bg groceryStore # to be made
 
     show groceryAlien talking at right # to be made
     #Hello! Just pick whatever you want
-    ga "Bartle!  Zeeky horp beekyfooble markle"
+    ga "[kwords[12]]! [kwords[2]] [kwords[17]] [kwords[18]] [kwords[6]] [kwords[19]]"
     show alien talking at left # to be made
     #Hey! Me want diet coke
-    a "Zinky zoogle! Barkle veepy"
+    a "[kwords[0]]! [kwords[14]] [kwords[19]] [kwords[22]]"
 
     show groceryAlien handingCoke at right # to be made
-    ga "veepy!"
+    show alien idle at left
+    ga "[kwords[22]]!"
+    show groceryAlien idle at right
     show alien withCoke at left # to be made
-    a "geekyduckle"
+    a "[kwords[21]]"
 
     menu:
         "I still have no idea whats going on":
@@ -155,14 +184,17 @@ label groceryStore:
 label printShop:
     $ progress = 5
 
+    # show them walking through the market again
+
     scene bg printShop # to be made
 
     show photoAlien talking at left # to be made
     show alien idle at center # to be made
     show human idle at right # to be made
-    # Just wondering, what you want?
+    "Print Shop Alien" "[kwords[0]]"
 
-    $ finalAnswer = renpy.input("Zeekybooble, vorp markle?")
+    # Just wondering, what you want?
+    $ finalAnswer = renpy.input("[kwords[2]] [kwords[3]], [kwords[1]] [kwords[6]] [kwords[19]]?")
 
     if finalAnswer.lower() == "barkle bogos binted":
         jump finalScene
@@ -188,12 +220,14 @@ label printShop:
             "Consult my notebook":
                 jump dictionary
 
+# to finish
 label dictionary:
-    # find a way to show all of the words that the player has already entered with options to edit
-    # do this with a for loop
-    # absolutely do this with a for loop
-    # show one translation at a time 
-    # mabye show each line as a menu with options
+    python:
+        counter = 0
+        for word in kwords:
+            if kwords[counter] != awords [counter]:
+                ""
+            counter +=1
 
 label finalScene:
     
