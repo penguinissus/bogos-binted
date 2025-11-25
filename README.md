@@ -33,3 +33,6 @@ This game will be made with ren'py and the goal of the game will be about gettin
 | horp | pick | 17 |
 | beekyfooble | whatever | 18 |
 | quarkle | want | 19 |
+| feep | apple | 20 |
+| geekyduckle | thank you | 21 |
+| veepy | diet coke | 22 |
