@@ -10,31 +10,43 @@ a scene that says "warning have some sort of notation device ready because you a
 copy of the photos printed text
 copy of the bogos binted text
 cutscecne from text to human's room? or something of that sort
+(isometric)
 scene of human getting sucked up by a spaceship
-scene of the inside of a spaceship and the human is gonna be talking inside that room
+scene of the inside of a spaceship and the human is gonna be talking inside that room (isometric)
 cutscene of ufo landing on planet
 bg with planet exterior
-cutscene of alien and human walking into a market
+cutscene of alien and human walking into a market (isometric)
 fruitstall background
 alien and human walking through market
-groceryStore background
-at some staples looking store
+groceryStore background (isometric)
+at some staples looking store (isometric)
 you looking through the circular window, and all the aliens are waving you goodbye
 Some sort of "the end and credits"
 
 List of characters:
-human talking
-alien responding
-alien talking
-human responding
-human idle
-alien idle
-marketAlien talking
+human talkingLeft
+human talkingRight
+alien respondingLeft
+alien respondingRight
+alien talkingLeft
+alien talkingRight
+human respondingLeft
+human respondingRight
+human idleLeft
+human idleRight
+alien idleLeft
+alien idleRight
+marketAlien talkingLeft
+marketAlien talkingRight
 marketAlien handingApple
-marketAlien idle
+marketAlien idleLeft
+marketAlien idleRight
 alien withApple
-groceryAlien talking
+groceryAlien talkingLeft
+groceryAlien talkingRight
 groceryAlien handingCoke
 alien withCoke
-groceryAlien idle
-photoAlien talking
+groceryAlien idleLeft
+groceryAlien idleRight
+photoAlien talkingLeft
+photoAlien talkingRight
