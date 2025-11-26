@@ -92,10 +92,10 @@ label planet:
     show alien talking at center
     if response1 == "explanation":
         # Hey is hello
-        a "[kwords[11]] [kwords[9]] [kwords[0]]"
+        a "[kwords[12]] [kwords[9]] [kwords[0]]"
         h "[kwords[0]]"
         python:
-            for i in [0, 9, 11]:
+            for i in [0, 9, 12]:
                 seenWords[i] = True
 
     # Hello! Let me show you around
