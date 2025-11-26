@@ -13,38 +13,6 @@ init python:
     kwords = ewords
     seenWords = [False         , False , False  , False      , False           , False   , False, False, False , False , False , False , False   , False   , False , False , False   , False , False        , False    , False  , False        , False      , False   , False    , False]
 
-label translation:
-    $ alienWord = renpy.input("Alien Word")
-    $ humanWord = renpy.input("Enter your translation")
-    python:
-        counter = -1
-        if alienWord == humanWord:
-            for word in awords:
-                counter +=1
-                if alienWord == word:
-                    break
-            kword[counter] = humanWord
-        else:
-            "Not valid."
-    menu:
-        "enter more words":
-            jump translation
-        "back to alien planet":
-            if progress == 0:
-                jump transportToPlanet
-            elif progress == 1:
-                jump selection1
-            elif progress == 2:
-                jump fruitStall
-            elif progress == 3:
-                jump groceryStore
-            elif progress == 4:
-                jump printShop
-            elif progress == 5:
-                jump printShop
-            else:
-                jump start
-
 label start:
     $ progress = 0
 
@@ -76,7 +44,7 @@ label start:
 
     menu:
         "I want a translation":
-            jump translation
+            jump dictionary
         "I had no idea what that was about":
             jump transportToPlanet
 
@@ -140,7 +108,7 @@ label planet:
         "What is going on? I better keep moving":
             jump fruitStall
         "I think I might need to take some notes":
-            jump translation
+            jump dictionary
 
 label fruitStall:
     $ progress = 3
@@ -171,7 +139,7 @@ label fruitStall:
         "uhh let's just keep going":
             jump groceryStore
         "I think I'm catching on":
-            jump translation
+            jump dictionary
 
 label groceryStore:
     $ progress = 4
@@ -201,7 +169,7 @@ label groceryStore:
         "I still have no idea whats going on":
             jump printShop
         "Gotta take some notes":
-            jump translation
+            jump dictionary
 
 label printShop:
     $ progress = 5
@@ -247,9 +215,35 @@ label dictionary:
     python:
         counter = 0
         for word in kwords:
-            if kwords[counter] != awords [counter]:
-                ""
-            counter +=1
+            if seenWords[counter] == True:
+                if kwords[counter] != awords[counter]:    
+                    renpy.say("[awords[counter]] translated is [kwords[counter]]")
+                else:
+                    renpy.say("[awords[counter]] translated is _______")
+                    menu:
+                        "next":
+                            counter += 1
+                        "update translation":
+                            kwords[counter] = renpy.input("Enter your translation")
+                            counter += 1
+                        "hint"
+                        "back":
+                            if progress == 0:
+                                jump transportToPlanet
+                            elif progress == 1:
+                                jump selection1
+                            elif progress == 2:
+                                jump fruitStall
+                            elif progress == 3:
+                                jump groceryStore
+                            elif progress == 4:
+                                jump printShop
+                            elif progress == 5:
+                                jump printShop
+                            else:
+                                jump start
+            else:
+                counter +=1
 
 label finalScene:
     
