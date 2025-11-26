@@ -8,9 +8,10 @@ define ga = Character("Grocery Store Alien")
 init python:
     translation = False
     progress = 0
-    ewords = ["zinky zoogle", "vorp", "zeeky", "booble"   , "zeekybooble"   , "beeble", "mee", "eep", "Forp", "zilk", "lort", "zort", "bartle", "yuckle", "birt", "corm", "harkle", "horp", "beekyfooble", "quarkle", "feep" , "geekyduckle", "veepy"    , "bogos" , "binted" , "meep"]
-    awords = ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"   , "apple", "thank you"  , "diet coke", "photos", "printed", "you got"]
+    ewords =    ["zinky zoogle", "vorp", "zeeky", "booble"   , "zeekybooble"   , "beeble", "mee", "eep", "Forp", "zilk", "lort", "zort", "bartle", "yuckle", "birt", "corm", "harkle", "horp", "beekyfooble", "quarkle", "feep" , "geekyduckle", "veepy"    , "bogos" , "binted" , "meep"]
+    awords =    ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"   , "apple", "thank you"  , "diet coke", "photos", "printed", "you got"]
     kwords = ewords
+    seenWords = [False         , False , False  , False      , False           , False   , False, False, False , False , False , False , False   , False   , False , False , False   , False , False        , False    , False  , False        , False      , False   , False    , False]
 
 label translation:
     $ alienWord = renpy.input("Alien Word")
@@ -55,6 +56,9 @@ label start:
     a "[kwords[23]] [kwords[24]]?"
     h "What"
     a "-confused alien noises-"
+    python:
+        for i in [23, 24]:
+            seenWords[i] = True
 
     # insert cutscene
 
@@ -66,6 +70,9 @@ label start:
     h "Photos printed?"
     a "[kwords[1]]?"
     h "- confused human noises-"
+    python:
+        for i in [0, 1, 2, 3, 5, 8, 23, 24, 25]:
+            seenWords[i] = True
 
     menu:
         "I want a translation":
@@ -91,6 +98,8 @@ label transportToPlanet:
     show  alien talking at center # to be made
     a "[kwords[0]]!"
     h "Whaat... what should I respond with"
+    python:
+        seenWords[0] = True
 
     jump selection1
 
@@ -117,9 +126,15 @@ label planet:
         # Hey is hello
         a "[kwords[11]] [kwords[9]] [kwords[0]]"
         h "[kwords[0]]"
+        python:
+            for i in [0, 9, 11]:
+                seenWords[i] = True
 
     # Hello! Let me show you around
     a "[kwords[12]]! [kwords[13]] [kwords[14]] [kwords[15]] [kwords[6]] [kwords[16]]"
+    python:
+        for i in [6, 12, 13, 14, 15, 16]:
+            seenWords[i] = True
 
     menu:
         "What is going on? I better keep moving":
@@ -147,6 +162,10 @@ label fruitStall:
     show marketAlien idle at left # to be made
     show alien withApple at right # to be made
     a "[kwords[21]]"
+    
+    python:
+        for i in [0, 2, 6, 12, 14, 17, 18, 19, 20, 21]:
+            seenWords[i] = True
 
     menu:
         "uhh let's just keep going":
@@ -174,6 +193,9 @@ label groceryStore:
     show groceryAlien idle at right
     show alien withCoke at left # to be made
     a "[kwords[21]]"
+
+    python:
+        for i in [0, 2, 6, 12, 14, 17, 18, 19, 22]
 
     menu:
         "I still have no idea whats going on":
