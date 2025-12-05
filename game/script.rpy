@@ -16,27 +16,43 @@ init python:
 label start:
     $ progress = 0
 
-    scene bg textHuman # to be made
+    scene bg warning
 
+    scene bg photosPrinted1
     show human talking at left # to be made
     h "Hey, just wondering if you got your photos printed?"
+    scene bg photosPrinted2
+    show human idle at left # to be made
     show alien responding at right # to be made
     a "[kwords[23]] [kwords[24]]?"
+    scene bg photosPrinted3
+    show human talking at left # to be made
+    show alien idle at right # to be made
     h "What"
+    scene bg photosPrinted4
+    show human idle at left # to be made
+    show alien idle at right # to be made
     a "-confused alien noises-"
     python:
         for i in [23, 24]:
             seenWords[i] = True
 
     # insert cutscene
-
-    scene bg textAlien # to be made
     
+    scene bg bogosBinted1
     show alien talking at left # to be made
     a "[kwords[0]], [kwords[2]][kwords[3]] [kwords[5]] [kwords[25]] [kwords[8]] [kwords[23]] [kwords[24]]?"
+    scene bg bogosBinted2
+    show alien idle at left # to be made
     show human responding at right # to be made
     h "Photos printed?"
+    scene bg bogosBinted3
+    show alien talking at left # to be made
+    show human idle at right # to be made
     a "[kwords[1]]?"
+    scene bg bogosBinted4
+    show alien idle at left # to be made
+    show human idle at right # to be made
     h "- confused human noises-"
     python:
         for i in [0, 1, 2, 3, 5, 8, 23, 24, 25]:
