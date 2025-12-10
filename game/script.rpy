@@ -179,7 +179,8 @@ label groceryStore:
     a "[kwords[21]]"
 
     python:
-        for i in [0, 2, 6, 12, 14, 17, 18, 19, 22]
+        for i in [0, 2, 6, 12, 14, 17, 18, 19, 22]:
+            seenWords[i] = True
 
     menu:
         "I still have no idea whats going on":
@@ -236,28 +237,32 @@ label dictionary:
                     renpy.say("[awords[counter]] translated is [kwords[counter]]")
                 else:
                     renpy.say("[awords[counter]] translated is _______")
-                    menu:
-                        "next":
-                            counter += 1
-                        "update translation":
-                            kwords[counter] = renpy.input("Enter your translation")
-                            counter += 1
-                        "hint"
-                        "back":
-                            if progress == 0:
-                                jump transportToPlanet
-                            elif progress == 1:
-                                jump selection1
-                            elif progress == 2:
-                                jump fruitStall
-                            elif progress == 3:
-                                jump groceryStore
-                            elif progress == 4:
-                                jump printShop
-                            elif progress == 5:
-                                jump printShop
-                            else:
-                                jump start
+                    choice = renpy.display_menu([
+                        ("next", "next"),
+                        ("update translation", "update"),
+                        ("hint", "hint"),
+                        ("back", "back")
+                    ])
+                    if choice == "next":
+                        counter += 1
+                    elif choice == "update translation":
+                        kwords[counter] = renpy.input("Enter your translation")
+                        counter +=1
+                    elif choice == "hint":
+                        print("hehe")
+                    elif choice == "back":
+                        if progress == 0:
+                            renpy.jump("transportToPlanet")
+                        elif progress == 1:
+                            renpy.jump("selection1")
+                        elif progress == 2:
+                            renpy.jump("fruitStall")
+                        elif progress == 3:
+                            renpy.jump("groceryStore")
+                        elif progress == (4 or 5):
+                            renpy.jump("printShop")
+                        else:
+                            renpy.jump("start")
             else:
                 counter +=1
 
