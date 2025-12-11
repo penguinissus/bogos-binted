@@ -12,24 +12,26 @@ init python:
     awords =    ["hey"         , "what", "just" , "wondering", "just wondering", "if"    , "you", "got", "your", "is"  , "a"   , "is a", "hello" , "let"   , "me"  , "show", "around", "pick", "whatever"   , "want"   , "apple", "thank you"  , "diet coke", "photos", "printed", "you got"]
     kwords = ewords
     seenWords = [False         , False , False  , False      , False           , False   , False, False, False , False , False , False , False   , False   , False , False , False   , False , False        , False    , False  , False        , False      , False   , False    , False]
-
+    
 label start:
     $ progress = 0
 
     scene bg warning
+    "oh i must have words here for the scene to show up"
 
-    scene bg photosPrinted1
+    scene bg photosprinted1
+    "testing testing"
     show human talking at left # to be made
     h "Hey, just wondering if you got your photos printed?"
-    scene bg photosPrinted2
+    scene bg photosprinted2
     show human idle at left # to be made
     show alien responding at right # to be made
     a "[kwords[23]] [kwords[24]]?"
-    scene bg photosPrinted3
+    scene bg photosprinted3
     show human talking at left # to be made
     show alien idle at right # to be made
     h "What"
-    scene bg photosPrinted4
+    scene bg photosprinted4
     show human idle at left # to be made
     show alien idle at right # to be made
     a "-confused alien noises-"
@@ -39,18 +41,18 @@ label start:
 
     # insert cutscene
     
-    scene bg bogosBinted1
+    scene bg bogosbinted1
     show alien talking at left # to be made
     a "[kwords[0]], [kwords[2]][kwords[3]] [kwords[5]] [kwords[25]] [kwords[8]] [kwords[23]] [kwords[24]]?"
-    scene bg bogosBinted2
+    scene bg bogosbinted2
     show alien idle at left # to be made
     show human responding at right # to be made
     h "Photos printed?"
-    scene bg bogosBinted3
+    scene bg bogosbinted3
     show alien talking at left # to be made
     show human idle at right # to be made
     a "[kwords[1]]?"
-    scene bg bogosBinted4
+    scene bg bogosbinted4
     show alien idle at left # to be made
     show human idle at right # to be made
     h "- confused human noises-"
@@ -234,9 +236,9 @@ label dictionary:
         for word in kwords:
             if seenWords[counter] == True:
                 if kwords[counter] != awords[counter]:    
-                    renpy.say("[awords[counter]] translated is [kwords[counter]]")
+                    renpy.say(None, "[awords[counter]] translated is [kwords[counter]]")
                 else:
-                    renpy.say("[awords[counter]] translated is _______")
+                    renpy.say(None, "[awords[counter]] translated is _______")
                     choice = renpy.display_menu([
                         ("next", "next"),
                         ("update translation", "update"),
